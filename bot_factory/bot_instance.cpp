@@ -7,16 +7,19 @@ BotInstance::BotInstance(QString& botName, QJsonDocument& doc, QUrl& targetSite,
     m_targetSite = targetSite;
     m_tgUrl = "https://api.telegram.org/bot";
     m_chatID = QString("-1002848781330");
+
     QJsonObject jsonObj= doc.object();
 
     m_botToken = jsonObj["telegram_token"].toString();
+    QString targetWeb = targetSite.toString();
 
-    qDebug() << m_botToken;
+    m_generator = std::shared_ptr<MessageGenerator>(new MessageGenerator(targetWeb,  this));
+
     QTimer* timer = new QTimer(this);
 
     connect(timer, &QTimer::timeout, [this]{
-        qDebug() <<  "send";
-        sendMessage();
+        qDebug() <<  "sending";
+        // sendMessage();
     });
     timer->start(5000);
 
@@ -36,10 +39,8 @@ void BotInstance::sendMessage()
 
     QNetworkReply *reply = networkManager->post(request, params.query(QUrl::FullyEncoded).toUtf8());
 
-    // Таймаут 30 секунд
     QTimer::singleShot(6000, reply, &QNetworkReply::abort);
 
-    // DEBUG: Проверяем соединение
     qDebug() << "Connecting to:" << url.toString();
     qDebug() << "Request data:" << params.query(QUrl::FullyEncoded);
 

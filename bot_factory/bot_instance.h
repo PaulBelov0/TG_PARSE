@@ -9,9 +9,14 @@
 #include <QString>
 #include <QTimer>
 #include <QMap>
+#include <QPointer>
 
 #include <QtNetwork/QNetworkAccessManager>
 #include <QtNetwork/QNetworkReply>
+
+#include <memory>
+
+#include "html_parsing/message_generator.h"
 
 
 class BotInstance : QObject
@@ -30,6 +35,8 @@ private:
     QString m_botName;
     QString m_chatID;
     QUrl m_targetSite;
+
+    std::shared_ptr<MessageGenerator> m_generator;
 };
 
 #endif // BOT_INSTANCE_H
