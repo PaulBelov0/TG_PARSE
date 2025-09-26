@@ -24,7 +24,7 @@ BotInstance::BotInstance(QString& botName, QJsonDocument& doc, QUrl& targetSite,
         qDebug() <<  "sending from " << targetWeb;
         sendMessage(m_generator->generateMessage(targetWeb, m_exportLink));
     });
-    timer->start(60000);
+    timer->start(6000);
 
 }
 
@@ -47,7 +47,7 @@ void BotInstance::sendMessage(QString message)
     QNetworkReply *reply = networkManager->post(request, params.query(QUrl::FullyEncoded).toUtf8());
 
 
-    QTimer::singleShot(10000, reply, &QNetworkReply::abort);
+    QTimer::singleShot(1000, reply, &QNetworkReply::abort);
 
     qDebug() << "Connecting to:" << url.toString();
     qDebug() << "CONTENT: " << message.length();
