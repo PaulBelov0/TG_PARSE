@@ -82,7 +82,23 @@ QString HtmlParser::escapeMarkdown(const QString &text) {
         .replace("*", "\\*")
         .replace("`", "\\`")
         .replace("[", "\\[")
-        .replace("]", "\\]");
+        .replace("]", "\\]")
+        // Кавычки и символы
+        .replace("&laquo;", "«")
+        .replace("&raquo;", "»")
+        .replace("&ldquo;", "“")
+        .replace("&rdquo;", "”")
+        .replace("&lsquo;", "‘")
+        .replace("&rsquo;", "’")
+        .replace("&bdquo;", "„")
+        .replace("&prime;", "′")
+        .replace("&Prime;", "″")
+        // Дополнительные символы которые могут встречаться
+        .replace("&hellip;", "...")
+        .replace("&minus;", "-")
+        .replace("&plusmn;", "±")
+        .replace("&times;", "×")
+        .replace("&divide;", "÷");
     return escaped;
 }
 
