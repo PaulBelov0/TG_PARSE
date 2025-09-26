@@ -11,12 +11,16 @@ CONFIG += c++17
 SOURCES += \
     bot_factory/bot_factory.cpp \
     bot_factory/bot_instance.cpp \
+    html_parsing/html_parser.cpp \
+    html_parsing/message_generator.cpp \
     main.cpp \
     main_window.cpp
 
 HEADERS += \
     bot_factory/bot_factory.h \
     bot_factory/bot_instance.h \
+    html_parsing/html_parser.h \
+    html_parsing/message_generator.h \
     main_window.h
 
 # Default rules for deployment.
