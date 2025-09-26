@@ -15,6 +15,7 @@
 #include <QtNetwork/QNetworkReply>
 
 #include <memory>
+#include <iostream>
 
 #include "html_parsing/message_generator.h"
 
@@ -23,9 +24,9 @@ class BotInstance : QObject
 {
     Q_OBJECT
 public:
-    BotInstance(QString& botName, QJsonDocument& doc, QUrl& targetSite, QObject* parent = nullptr);
+    BotInstance(QString& botName, QJsonDocument& doc, QUrl& targetSite, QString exportLink, QObject* parent = nullptr);
 
-    void sendMessage();
+    void sendMessage(QString message);
 
     QString getBotName();
 private:
@@ -34,7 +35,10 @@ private:
     QString m_cfgFilename;
     QString m_botName;
     QString m_chatID;
+    QString m_exportLink;
     QUrl m_targetSite;
+
+    std::unique_ptr<QString> m_previousMessage;
 
     std::shared_ptr<MessageGenerator> m_generator;
 };

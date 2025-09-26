@@ -22,14 +22,17 @@ BotFactory::BotFactory(QObject* parent)
         QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
 
         QUrl url;
+        QString exportUrl;
 
         QJsonArray sources = doc.object()["news_sources"].toArray();
         for (const QJsonValue &source : sources)
+        {
             url = QUrl(source.toObject()["url"].toString());
+            exportUrl = source.toObject()["exp_url"].toString();
+        }
         qDebug() << "URL:" << url.toString();
 
-        m_bots->push_back(new BotInstance(filename, doc, url, this));
-        BotInstance* bot = new BotInstance(filename, doc, url, this);
+        m_bots->push_back(new BotInstance(filename, doc, url, exportUrl, this));
     }
 }
 

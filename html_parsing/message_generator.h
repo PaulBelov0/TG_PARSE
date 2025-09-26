@@ -15,10 +15,8 @@ class MessageGenerator : QObject
 public:
     MessageGenerator(QString& link, QObject* parent = nullptr);
 
-    QString* generateMessage();
+    QString generateMessage(QString htmlLink, QString exportLink);
 private:
-    std::shared_ptr<QString> m_msg;
-    std::shared_ptr<QString> m_link;
 
     QPointer<HtmlParser> m_parser;
 };

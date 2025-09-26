@@ -3,13 +3,10 @@
 MessageGenerator::MessageGenerator(QString& link, QObject* parent)
     : QObject(parent)
 {
-    m_msg = std::shared_ptr<QString>(new QString());
-    m_link = std::shared_ptr<QString>(new QString(link));
-
-    m_pasrser = new HtmlParser(this);
+    m_parser = new HtmlParser(this);
 }
 
-QString* MessageGenerator::generateMessage()
+QString MessageGenerator::generateMessage(QString htmlLink, QString exportLink)
 {
-    return m_msg.get();
+    return HtmlParser::fetchNewsFeed(htmlLink, exportLink);
 }

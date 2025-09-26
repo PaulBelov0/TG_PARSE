@@ -9,7 +9,8 @@
   "news_sources": [
     {
       "name": "Tech News API",
-      "url": "https://api.technews.com/v1/articles",
+      "url": "https://www.gazeta.ru/news/",
+      "exp_url" : "https://www.gazeta.ru",
       "type": "json",
       "update_interval": 1800,
       "parser": "json_api",
