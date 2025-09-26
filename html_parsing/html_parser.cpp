@@ -82,7 +82,18 @@ QString HtmlParser::escapeMarkdown(const QString &text) {
         .replace("*", "\\*")
         .replace("`", "\\`")
         .replace("[", "\\[")
-        .replace("]", "\\]")
+        .replace("]", "\\]");
+    return escaped;
+}
+
+QString HtmlParser::decodeHtmlEntities(const QString &text) {
+    QString decoded = text;
+    decoded.replace("&nbsp;", " ")
+        .replace("&amp;", "&")
+        .replace("&quot;", "\"")
+        .replace("&lt;", "<")
+        .replace("&gt;", ">")
+        .replace("&#160;", " ")
         // Кавычки и символы
         .replace("&laquo;", "«")
         .replace("&raquo;", "»")
@@ -99,17 +110,6 @@ QString HtmlParser::escapeMarkdown(const QString &text) {
         .replace("&plusmn;", "±")
         .replace("&times;", "×")
         .replace("&divide;", "÷");
-    return escaped;
-}
-
-QString HtmlParser::decodeHtmlEntities(const QString &text) {
-    QString decoded = text;
-    decoded.replace("&nbsp;", " ")
-        .replace("&amp;", "&")
-        .replace("&quot;", "\"")
-        .replace("&lt;", "<")
-        .replace("&gt;", ">")
-        .replace("&#160;", " ");
     return decoded;
 }
 
