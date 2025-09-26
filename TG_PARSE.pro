@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui network
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -11,18 +11,25 @@ CONFIG += c++17
 SOURCES += \
     bot_factory/bot_factory.cpp \
     bot_factory/bot_instance.cpp \
+    html_parsing/html_parser.cpp \
+    html_parsing/message_generator.cpp \
     main.cpp \
     main_window.cpp
 
 HEADERS += \
     bot_factory/bot_factory.h \
     bot_factory/bot_instance.h \
+    html_parsing/html_parser.h \
+    html_parsing/message_generator.h \
     main_window.h
-
-DISTFILES += config.json \
-    config.json
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc
+
+DISTFILES += \
+    bot_configs/config.txt

@@ -1,0 +1,41 @@
+{
+  "telegram_token": "8099978959:AAF2IjrFlEjX35tDcr31obJzcffHFj2XHWk",
+  "database": "/var/lib/news_bot/news_bot.db",
+  "parser_settings": {
+    "default_parser": "rss",
+    "throttle_ms": 300,
+    "max_threads": 2
+  },
+  "news_sources": [
+    {
+      "name": "Tech News API",
+      "url": "https://www.gazeta.ru/news/",
+      "exp_url" : "https://www.gazeta.ru",
+      "type": "json",
+      "update_interval": 1800,
+      "parser": "json_api",
+      "target_channels": [-1001234567890, -1009876543210],
+      "api_key": "https://t.me/+u-bnwIm5wZFkZmQy",
+      "mapping": {
+        "title": "article.headline",
+        "description": "article.summary",
+        "url": "article.link",
+        "date": "article.published_at"
+      }
+    }
+  ],
+  "channels": [
+    {
+      "id": -1001234567890,
+      "name": "Test",
+      "admin_check": false,
+      "message_template": "<b>{title}</b>\n\n{description}\n\n<a href=\"{url}\">Read more</a>"
+    }
+  ],
+  "system": {
+    "log_level": "info",
+    "cache_dir": "/tmp/news_bot_cache",
+    "max_cache_size": 100,
+    "healthcheck_port": 8080
+  }
+}
